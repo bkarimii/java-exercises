@@ -25,13 +25,14 @@ class Shapes {
     
   }
 
-
   /**
    * Prints a right-angled triangle that is 5 lines tall on the left and
    * is 5 columns wide at the base.
    */
   void printARightAngledTriangle() {
-    // TODO print the triangle described above
+      for(int j=1;j<=5;j++){
+        System.out.println("*".repeat(j));
+      }
   }
 
 }

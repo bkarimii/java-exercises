@@ -7,5 +7,7 @@ public class ShapesRunner {
         Shapes shape=new Shapes();
 
         shape.printASquare();
+        System.out.println("=============================");
+        shape.printARightAngledTriangle();
     }
 }
