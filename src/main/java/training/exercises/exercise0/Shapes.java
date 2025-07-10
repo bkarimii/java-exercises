@@ -18,7 +18,11 @@ class Shapes {
     // Use System.out.println to print the square above using '*'s.
 
     System.out.println("******");
-    // TODO add the rest of the square...
+    System.out.println("*    *");
+    System.out.println("*    *");
+    System.out.println("******");
+    
+    
   }
 
 
