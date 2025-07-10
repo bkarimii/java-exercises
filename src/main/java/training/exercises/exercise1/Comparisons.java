@@ -12,7 +12,7 @@ class Comparisons {
    * @return true if the number is positive; false otherwise
    */
   boolean isPositive(int number) {
-    return false; // TODO fix this method
+    return number>0;
   }
 
 
@@ -25,7 +25,7 @@ class Comparisons {
    * @return true if the number is in the range; false otherwise
    */
   boolean isInRange(int number, int startOfRangeInclusive, int endOfRangeExclusive) {
-    return false;
+    return (number>=startOfRangeInclusive && number<endOfRangeExclusive);
   }
 
 
@@ -36,7 +36,7 @@ class Comparisons {
    * @return true if the number is negative or 5; false otherwise
    */
   boolean isNegativeOrFive(int number) {
-    return false;
+    return (number<0 || number==5);
   }
 
 }
