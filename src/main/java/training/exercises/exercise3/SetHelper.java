@@ -1,5 +1,6 @@
 package training.exercises.exercise3;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -13,8 +14,11 @@ class SetHelper {
    * @return a three-element Set.
    */
   Set<Object> createThreeElementSet() {
-    // TODO return a set with three elements
-    return null;
+    Set<Object> setOfNums=new HashSet<>();
+    setOfNums.add("1");
+    setOfNums.add("null");
+    setOfNums.add("Jane");
+    return setOfNums;
   }
 
 
@@ -25,8 +29,7 @@ class SetHelper {
    * @return true if zero is in the set; false otherwise
    */
   boolean containsZero(Set<Integer> numbers) {
-    // TODO return true if numbers contains zero
-    return false;
+    return numbers.contains(0);
   }
 
 }

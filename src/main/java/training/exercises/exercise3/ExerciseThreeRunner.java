@@ -2,13 +2,15 @@ package training.exercises.exercise3;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class ExerciseThreeRunner {
     public static void main(String[] args){
 
-        String whichClass="MapHelper";
+        String whichClass="SetHelper";
 
         if(whichClass=="ListHelper"){
             ListHelper listHelper=new ListHelper();
@@ -55,6 +57,16 @@ public class ExerciseThreeRunner {
             System.out.println("=========================================");
             mapHelper.printPhoneDirectory(namePhone);
 
+        }else if(whichClass=="SetHelper"){
+            SetHelper setHelper= new SetHelper();
+            Set<Integer> setOfNum=new HashSet<>();
+            setOfNum.add(0);
+            setOfNum.add(2);
+            setHelper.createThreeElementSet();
+            System.out.println("=========================================");
+            System.out.println(setHelper.containsZero(setOfNum));
+        }else{
+            System.out.println("================End of the practice=================");
         }
         
     }
