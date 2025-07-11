@@ -12,7 +12,8 @@ class MoreMaths {
    * @return one more than the given number
    */
   int increment(int x) {
-    return 0;
+    return ++x;
+    // return x+1;
   }
 
 
@@ -23,7 +24,8 @@ class MoreMaths {
    * @return one less than the given number
    */
   int decrement(int x) {
-    return 0;
+    return --x;
+    // return x-1;
   }
 
 
@@ -35,7 +37,7 @@ class MoreMaths {
    * @return double the number if it is odd; otherwise just the number itself
    */
   int doubleIfOdd(int x) {
-    return 0;
+    return x%2!=0 ? 2*x: x;
   }
 
 }

@@ -13,8 +13,7 @@ class Maths {
    * @return the result of adding the two numbers
    */
   int add(int a, int b) {
-    // TODO implement this method so that it returns the result of adding a and b
-    return 0;
+    return a+b;
   }
 
 
@@ -26,8 +25,7 @@ class Maths {
    * @return the result of subtracting b from a
    */
   int subtract(int a, int b) {
-    // TODO return the result of subtracting b from a
-    return 0;
+    return b-a;
   }
 
 
@@ -39,10 +37,7 @@ class Maths {
    * @return the result of multiplying the two numbers together
    */
   int multiply(int a, int b) {
-    // TODO compute the product of a and b
-    return 0;
-
-    // TODO to pass *all* the test cases for this one you might have to change some of the types
+    return a*b;
   }
 
 
@@ -54,7 +49,9 @@ class Maths {
    * @return the result of dividing a by b
    */
   int divide(int a, int b) {
-    // TODO compute a divided by b
+    if(b!=0){
+      return a/b;
+    }
     return 0;
   }
 
