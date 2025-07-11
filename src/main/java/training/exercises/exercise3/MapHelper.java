@@ -1,5 +1,6 @@
 package training.exercises.exercise3;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -13,7 +14,13 @@ class MapHelper {
    * @return a three-entry map.
    */
   Map<Object, Object> createThreeEntryMap() {
-    return null; // TODO create and return a map with three entries
+    Map<Object,Object> nameAgeMap=new HashMap<>();
+    nameAgeMap.put("John", 20);
+    nameAgeMap.put("Jane", 30);
+    nameAgeMap.put("Ford", 40);
+    nameAgeMap.put("UK", "London");
+    return nameAgeMap;
+    
   }
 
 
@@ -24,7 +31,9 @@ class MapHelper {
    * @return the value for the "Matt" entry
    */
   String getMattsPhoneNumber(Map<String, String> namesToNumbers) {
-    return null; // TODO get the correct entry from the map
+
+    return namesToNumbers.get("Matt");
+
   }
 
 
@@ -36,7 +45,10 @@ class MapHelper {
    * @param namesToNumbers the names and numbers to print
    */
   void printPhoneDirectory(Map<String, String> namesToNumbers) {
-    // TODO print the phone directory
+    
+    for(Map.Entry<String, String> entry:namesToNumbers.entrySet()){
+      System.out.println(entry.getKey()+", "+entry.getValue());
+    }
   }
 
 }
