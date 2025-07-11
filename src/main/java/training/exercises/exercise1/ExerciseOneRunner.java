@@ -25,5 +25,11 @@ public class ExerciseOneRunner {
         System.out.println(moreMath.decrement(10));
         System.out.println(moreMath.doubleIfOdd(3));
         
+        System.out.println("-------FizzBuzz class starts here -----------");
+        FizzBuzz fizzBuzz= new FizzBuzz();
+        fizzBuzz.takeTurn(15);
+        fizzBuzz.takeTurn(9);
+        fizzBuzz.takeTurn(20);
+        fizzBuzz.takeTurn(13);
     }
 }
