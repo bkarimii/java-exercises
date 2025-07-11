@@ -14,7 +14,12 @@ class ListMaths {
    * @return the sum of all numbers in the list
    */
   int sum(List<Integer> numbers) {
-    return 0; // TODO use a loop to get the sum
+    int sum=0;
+    for(Integer num:numbers){
+      sum+=num;
+    }
+
+    return sum;
   }
 
 
@@ -25,6 +30,11 @@ class ListMaths {
    * @return the mean average of all numbers in the list
    */
   double average(List<Double> numbers) {
-    return 0; // TODO calculate the average
+    
+    double sum=0;
+    for(Double num:numbers){
+      sum+=num;
+    }
+    return sum/(numbers.size());
   }
 }
