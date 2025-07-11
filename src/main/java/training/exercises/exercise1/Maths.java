@@ -25,7 +25,7 @@ class Maths {
    * @return the result of subtracting b from a
    */
   int subtract(int a, int b) {
-    return b-a;
+    return a-b;
   }
 
 
