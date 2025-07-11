@@ -1,5 +1,6 @@
 package training.exercises.exercise3;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +14,16 @@ class ListHelper {
    * @return a four-element list
    */
   List<Object> createFourElementList() {
-    return null; // TODO return a list with four elements
+    // List<Object> listOfFour=List.of("ab","bc","cd","de");
+    
+    List<Object> listOfFourInteger=new ArrayList<>();
+    for(int i=1;i<=4;i++){
+      listOfFourInteger.add(i);
+    }
+
+
+    return listOfFourInteger;
+    // return listOfFour;
   }
 
 
@@ -24,7 +34,12 @@ class ListHelper {
    * @return the fifth element of the given list
    */
   String getFifthElement(List<String> list) {
-    return null; // TODO return the fifth element
+    if(list.size()>5){
+      return list.get(4);
+    }else{
+      System.out.println("Index out of boundary");
+      return "";
+    }
   }
 
 
@@ -35,7 +50,9 @@ class ListHelper {
    * @param elementToAdd the new element to add at the start of the list
    */
   void addElementAtStart(List<String> listToAddTo, String elementToAdd) {
-    // TODO add the element at the beginning of the list
+    System.out.println("List before adding: "+ listToAddTo);
+    listToAddTo.add(0,elementToAdd);
+    System.out.println("List after adding at the start: "+listToAddTo);
   }
 
 
@@ -45,7 +62,14 @@ class ListHelper {
    * @param list the list of items to print
    */
   void printAllElements(List<?> list) {
-    // TODO use an enhanced-for loop to print each item in the list
+    
+    // int bound=list.size();
+    // for(int i=0;i<bound;i++){
+    //   System.out.println(list.get(i));
+    // }
+    for(Object item:list){
+      System.out.println(item);
+    }
   }
 
 }
