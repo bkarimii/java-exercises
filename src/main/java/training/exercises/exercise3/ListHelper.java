@@ -34,7 +34,7 @@ class ListHelper {
    * @return the fifth element of the given list
    */
   String getFifthElement(List<String> list) {
-    if(list.size()>5){
+    if(list.size()>=5){
       return list.get(4);
     }else{
       System.out.println("Index out of boundary");
@@ -63,10 +63,6 @@ class ListHelper {
    */
   void printAllElements(List<?> list) {
     
-    // int bound=list.size();
-    // for(int i=0;i<bound;i++){
-    //   System.out.println(list.get(i));
-    // }
     for(Object item:list){
       System.out.println(item);
     }

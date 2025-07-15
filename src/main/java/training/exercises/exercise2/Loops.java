@@ -65,7 +65,7 @@ class Loops {
    */
   double average(int n) {
     
-    int summ=0;
+    double summ=0;
     for(int i=1;i<=n;i++){
       summ+=i;
     }

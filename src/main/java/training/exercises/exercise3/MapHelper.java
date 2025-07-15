@@ -18,7 +18,7 @@ class MapHelper {
     nameAgeMap.put("John", 20);
     nameAgeMap.put("Jane", 30);
     nameAgeMap.put("Ford", 40);
-    nameAgeMap.put("UK", "London");
+    // nameAgeMap.put("UK", "London");
     return nameAgeMap;
     
   }
@@ -47,7 +47,7 @@ class MapHelper {
   void printPhoneDirectory(Map<String, String> namesToNumbers) {
     
     for(Map.Entry<String, String> entry:namesToNumbers.entrySet()){
-      System.out.println(entry.getKey()+", "+entry.getValue());
+      System.out.println(entry.getKey()+": "+entry.getValue());
     }
   }
 
