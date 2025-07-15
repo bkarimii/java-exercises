@@ -68,8 +68,10 @@ class WeeklyRentalContract {
    * day of the week of Friday.
    */
   static WeeklyRentalContract createStandardContract(String customerName, int weeklyPaymentAmount) {
-    // TODO create the standard contract
-    return null;
+
+    WeeklyRentalContract myContract=new WeeklyRentalContract(customerName,weeklyPaymentAmount,DayOfWeek.FRIDAY);
+    return myContract;
+
   }
 
 }
