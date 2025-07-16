@@ -1,5 +1,6 @@
 package training.exercises.exercise5;
 
+
 /**
  * Processes input to the calculator.
  */
@@ -15,7 +16,12 @@ public class CalculatorInputProcessor {
    * @throws IllegalArgumentException if the operation is invalid
    */
   public void validateOperation(char operation) {
-    // TODO check the operation
+
+    if(operation=='^' || operation=='%'){
+      throw new UnimplementedOperationException();
+    }else if((operation!='+' && operation!='-' && operation!='*' && operation!='/')){
+        throw new IllegalArgumentException();
+    }
   }
 
 
@@ -28,7 +34,13 @@ public class CalculatorInputProcessor {
    * @throws IllegalArgumentException if the operation is invalid
    */
   void processUserInput(char userInput) {
-    validateOperation(userInput); // TODO catch the UnimplementedOperationException
+     // TODO catch the UnimplementedOperationException
+    try {
+      validateOperation(userInput);
+    } catch (UnimplementedOperationException e) {
+      System.out.println("Sorry. Not implemented!");
+    }
+
   }
 
 
@@ -38,7 +50,13 @@ public class CalculatorInputProcessor {
    * @param userInput the user input to process
    */
   void processUserInputAndSayBye(char userInput) {
-    processUserInput(userInput); // TODO say 'Goodbye' even if this line throws an exception
+     // TODO say 'Goodbye' even if this line throws an exception
+
+    try {
+      processUserInput(userInput);
+    } finally{
+      System.out.println("Goodbye");
+    }
   }
 
 }
