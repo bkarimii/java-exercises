@@ -19,6 +19,7 @@ enum DayOfWeek {
 
  public String getDescription(){
   return description;
+  
  }
   /**
    * Returns true if this day is part of the weekend; false if it's a weekday.
