@@ -15,18 +15,20 @@ class DateComparisons {
    * @return true if the first date is on or after the second one; false otherwise
    */
   boolean isDate1OnOrAfterDate2(LocalDate date1, LocalDate date2) {
-    return false;
+
+    return date1.isAfter(date2) || date1.isEqual(date2);
   }
 
-
   /**
-   * Returns true if and only if the first date is more than three months and one week after
+   * Returns true if and only if the first date is more than three months and one
+   * week after
    * the second date.
    *
    * @param date1 the first date to compare
    * @param date2 the second date to compare
-   * @return true if the first date is more than three months and one week after the second date;
-   * false otherwise
+   * @return true if the first date is more than three months and one week after
+   *         the second date;
+   *         false otherwise
    */
   boolean isDate1MoreThanThreeMonthsAndAWeekAfterDate2(LocalDate date1, LocalDate date2) {
     return false;
