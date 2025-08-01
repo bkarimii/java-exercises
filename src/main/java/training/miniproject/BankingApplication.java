@@ -18,23 +18,45 @@ public class BankingApplication {
    */
   public static void main(String[] args) {
 
-    Map<Integer, Integer> accountNumbersToOpeningBalances = Map.of(
-        1, 100,
-        2, 10_000,
-        3, -500);
+    // Map<Integer, Integer> accountNumbersToOpeningBalances = Map.of(
+    // 1, 100,
+    // 2, 10_000,
+    // 3, -500);
+
+    Map<Integer, BankAccount> accountNumbersToOpeningBalances = Map.of(
+        1, new BankAccount("John Doe", 100),
+        2, new BankAccount("Jane Doe", 10_000),
+        3, new BankAccount("Alice Smith", -500)
+
+    );
 
     // Do this in an infinite loop so that the application keeps running after a
     // user is finished,
     // and other users can sign in and use the banking application.
     while (true) {
       int accountNumber = UserInput.getInteger("Please enter your account number: ");
-      Integer balance = accountNumbersToOpeningBalances.get(accountNumber);
-      if (balance != null) {
-        System.out.println("Welcome, " + accountNumber + "!");
+      BankAccount account = accountNumbersToOpeningBalances.get(accountNumber);
+      if (account != null) {
+        Integer balance = account.getBalance();
+        String customerName = account.getName();
+
+        System.out.println("Welcome, " + customerName + "!");
         System.out.println("This is your balance: " + balance);
+        // ================================================================
+        System.out.println(
+            "Do you want to withdraw or deposite money into your account? ");
+        String depOrWithDraw = UserInput.getString("Enter -D for deposite money , or -W to withdraw money.");
+        if (depOrWithDraw.equalsIgnoreCase("D")) {
+          int depositeAmount = UserInput.getInteger("How much do you want to deposite? ");
+        } else if (depOrWithDraw.equalsIgnoreCase("W")) {
+          int withdrawAmount = UserInput.getInteger("How much do you want to deposite? ");
+
+        } else {
+          System.out.println("You must enter a valid value");
+        }
       } else {
         System.out.println(
-            "\n Account number wasn't found! please eneter a correct banck account number!\n if you don't have an account open one first.");
+            "Account wasn't found! Please Enter a correct account number.\n if you don't have an account with us you need to open one first.");
         continue;
       }
 
