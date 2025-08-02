@@ -26,7 +26,7 @@ public class BankingApplication {
     Map<Integer, BankAccount> accountNumbersToOpeningBalances = Map.of(
         1, new BankAccount("John Doe", 100),
         2, new BankAccount("Jane Doe", 10_000),
-        3, new BankAccount("Alice Smith", -500)
+        3, new BankAccount("Alice Smith", 500)
 
     );
 
@@ -39,49 +39,84 @@ public class BankingApplication {
       int accountNumber = UserInput.getInteger("Please enter your account number: ");
       BankAccount account = accountNumbersToOpeningBalances.get(accountNumber);
       if (account != null) {
+
+        boolean isDone = false;
         Integer balance = account.getBalance();
         String customerName = account.getName();
-
         System.out.println("Welcome, " + customerName + "!");
         System.out.println("This is your balance: " + balance);
-        // ================================================================
 
-        System.out.println(
-            "Do you want to withdraw or deposite money into your account? ");
-        String depOrWithDraw = UserInput
-            .getString("Enter -D for deposite money ,\n -W to withdraw money, \n -F to see future value of your money");
+        while (!isDone) {
 
-        if (depOrWithDraw.equalsIgnoreCase("D")) {
+          System.out.println(
+              "How can I help you today?  ");
+          String action = UserInput
+              .getString(
+                  "Enter \n -D to deposite money ,\n -W to withdraw money, \n -F to see future value of your money \n -L to logout of you account");
 
-          int depositeAmount;
-          try {
-            depositeAmount = UserInput.getInteger("How much do you want to deposite? ");
-            bankAccountService.depositeAmount(account, depositeAmount);
-            System.out.println("Your balance is: " + account.getBalance());
-          } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            depositeAmount = UserInput.getInteger("How much do you want to deposite? ");
+          if (action.equalsIgnoreCase("D")) {
+            boolean isValid = false;
+            int depositeAmount;
+            while (!isValid) {
+              try {
+                depositeAmount = UserInput.getInteger("How much do you want to deposite? ");
+                bankAccountService.depositeAmount(account, depositeAmount);
+                System.out.println("Your balance is: " + account.getBalance());
+                isValid = true;
+              } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                depositeAmount = UserInput.getInteger("How much do you want to deposite? ");
+              }
+
+            }
+
+          } else if (action.equalsIgnoreCase("W")) {
+            boolean isValid = false;
+            int withdrawAmount;
+            while (!isValid) {
+              try {
+                if (account.getBalance() <= 0) {
+                  System.out.println("You don't have any deposit to withdraw.");
+                  break;
+                }
+                withdrawAmount = UserInput.getInteger("How much do you want to withdraw? ");
+                bankAccountService.withdrawMoney(account, withdrawAmount);
+                System.out.println("Your balance is: " + account.getBalance());
+                isValid = true;
+              } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Your balance is: " + account.getBalance());
+                // withdrawAmount = UserInput.getInteger("How much do you want to withdraw? ");
+              }
+            }
+
+          } else if (action.equalsIgnoreCase("F")) {
+            boolean isValid = false;
+            int months = 0;
+            while (!isValid) {
+              months = UserInput.getInteger("For how long do you want to calc FV of your balance? ");
+              if (months <= 0) {
+                System.out.println("months can not be less or equal to 0");
+              } else if (months > 600) {
+                System.out.println("It's too long, months should be less than 600.");
+              } else {
+                isValid = true;
+              }
+            }
+            double fv = bankAccountService.FV(months, account);
+            System.out.println("Future value of your money for " + months + " month will be: " + fv);
+
+          } else if (action.equalsIgnoreCase("L")) {
+            isDone = true;
+          } else {
+            System.out.println("You must enter a valid value");
           }
-
-        } else if (depOrWithDraw.equalsIgnoreCase("W")) {
-
-          int withdrawAmount = UserInput.getInteger("How much do you want to withdraw? ");
-          bankAccountService.withdrawMoney(account, withdrawAmount);
-          System.out.println("Your balance is: " + account.getBalance());
-
-        } else if (depOrWithDraw.equalsIgnoreCase("F")) {
-          int months = UserInput.getInteger("For how long do you want to calc FV of your balance? ");
-          double fv = bankAccountService.FV(months, account);
-          System.out.println("Future value of your money for " + months + " month will be: " + fv);
-        } else {
-          System.out.println("You must enter a valid value");
         }
       } else {
         System.out.println(
             "Account wasn't found! Please Enter a correct account number.\n if you don't have an account with us you need to open one first.");
         continue;
       }
-
     }
   }
 }
