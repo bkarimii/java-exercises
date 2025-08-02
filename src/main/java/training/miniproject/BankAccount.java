@@ -1,24 +1,29 @@
 package training.miniproject;
 
+import java.time.LocalDateTime;
+
 public class BankAccount {
 
     private String name;
-    private int balance;
+    private double balance;
     private int pin;
-    private int overDraft;
+    private int overDraftLimit;
+    private double overDraftInterestRate;
+    private LocalDateTime overdraftStartDate;
 
-    public BankAccount(String name, int balance, int pin, int overDraft) {
+    public BankAccount(String name, int balance, int pin, int overDraftLimit, double overDraftInterestRate) {
         this.name = name;
         this.balance = balance;
         this.pin = pin;
-        this.overDraft = overDraft;
+        this.overDraftLimit = overDraftLimit;
+        this.overDraftInterestRate = overDraftInterestRate;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getBalance() {
+    public double getBalance() {
         return balance;
     }
 
@@ -26,12 +31,28 @@ public class BankAccount {
         return this.pin;
     }
 
-    public int getOverDraft() {
-        return overDraft;
+    public int getOverDraftLimit() {
+        return overDraftLimit;
     }
 
-    public void setBalance(int newBalance) {
+    public double getOverDraftInterestRate() {
+        return overDraftInterestRate;
+    }
+
+    public LocalDateTime getOverDraftStartDate() {
+        return this.overdraftStartDate;
+    }
+
+    public void setOverDraftInterestrate(double overDraftInterestRate) {
+        this.overDraftInterestRate = overDraftInterestRate;
+    }
+
+    public void setBalance(double newBalance) {
         this.balance = newBalance;
+    }
+
+    public void setOverDraftStartDate(LocalDateTime startDate) {
+        this.overdraftStartDate = startDate;
     }
 
 }
