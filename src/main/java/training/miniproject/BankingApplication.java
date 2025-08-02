@@ -79,10 +79,6 @@ public class BankingApplication {
             int withdrawAmount;
             while (!isValid) {
               try {
-                // if (account.getBalance() <= 0) {
-                // System.out.println("You don't have any deposit to withdraw.");
-                // break;
-                // }
                 withdrawAmount = UserInput.getInteger("How much do you want to withdraw? ");
                 bankAccountService.withdrawMoney(account, withdrawAmount);
                 System.out.println("Your balance is: " + account.getBalance());
