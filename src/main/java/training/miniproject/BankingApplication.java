@@ -24,9 +24,9 @@ public class BankingApplication {
     // 3, -500);
 
     Map<Integer, BankAccount> accountNumbersToOpeningBalances = Map.of(
-        1, new BankAccount("John Doe", 100, 1235, 50),
-        2, new BankAccount("Jane Doe", 10_000, 1111, 500),
-        3, new BankAccount("Alice Smith", 500, 2222, 100)
+        1, new BankAccount("John Doe", 100, 1235, 50, 0.1),
+        2, new BankAccount("Jane Doe", 10_000, 1111, 500, 01),
+        3, new BankAccount("Alice Smith", 500, 2222, 100, 0.1)
 
     );
 
@@ -45,7 +45,7 @@ public class BankingApplication {
           continue;
         }
         boolean isDone = false;
-        Integer balance = account.getBalance();
+        Double balance = account.getBalance();
         String customerName = account.getName();
         System.out.println("Welcome, " + customerName + "!");
         System.out.println("This is your balance: " + balance);
@@ -56,7 +56,7 @@ public class BankingApplication {
               "How can I help you today?  ");
           String action = UserInput
               .getString(
-                  "Enter \n -D to deposite money ,\n -W to withdraw money, \n -F to see future value of your money \n -L to logout of you account");
+                  "Enter \n -D to deposite money ,\n -W to withdraw money, \n -F to see future value of your money \n -O to overdraft \n -L to logout of you account");
 
           if (action.equalsIgnoreCase("D")) {
             boolean isValid = false;
@@ -76,10 +76,14 @@ public class BankingApplication {
 
           } else if (action.equalsIgnoreCase("W")) {
             boolean isValid = false;
-            int withdrawAmount;
+            double withdrawAmount;
             while (!isValid) {
               try {
                 withdrawAmount = UserInput.getInteger("How much do you want to withdraw? ");
+                System.out.println("\n Enter 0 to cancel the withdraw application.");
+                if (withdrawAmount == 0) {
+                  break;
+                }
                 bankAccountService.withdrawMoney(account, withdrawAmount);
                 System.out.println("Your balance is: " + account.getBalance());
                 isValid = true;
@@ -106,6 +110,17 @@ public class BankingApplication {
             double fv = bankAccountService.FV(months, account);
             System.out.println("Future value of your money for " + months + " month will be: " + fv);
 
+          } else if (action.equalsIgnoreCase("O")) {
+            if (account.getBalance() < 0) {
+
+              double fee = bankAccountService.calcOverDraftFee(account);
+
+              account.setBalance((account.getBalance() - fee));
+              System.out.println("Overdraft interest fee of " + fee + " applied.");
+              System.out.println("New balance is: " + account.getBalance());
+            } else {
+              System.out.println("No overdraft interest applied: your balance is not negative.");
+            }
           } else if (action.equalsIgnoreCase("L")) {
             isDone = true;
           } else {
