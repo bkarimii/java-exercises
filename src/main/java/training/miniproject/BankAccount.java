@@ -18,8 +18,8 @@ public class BankAccount {
         return balance;
     }
 
-    public void setBalance(int amount) {
-        this.balance += amount;
+    public void setBalance(int newBalance) {
+        this.balance=newBalance;
     }
 
 }
