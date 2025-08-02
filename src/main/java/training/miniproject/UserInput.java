@@ -50,6 +50,7 @@ final class UserInput {
       if (scanner.hasNextInt()) {
         return scanner.nextInt();
       }
+      System.out.println("You must enter a valid amount in number format!");
       return getInteger(prompt);
     }
 
