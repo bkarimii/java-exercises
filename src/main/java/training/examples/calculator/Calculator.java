@@ -14,7 +14,7 @@ public class Calculator {
    * @param operation the mathematical operator
    * @return the result
    */
-  public int calculate(int number1, int number2, char operation) {
+  public double calculate(double number1, double number2, char operation) {
 
     switch (operation) {
       case '+':
@@ -40,7 +40,7 @@ public class Calculator {
 
   }
 
-  public double futureValueOfMoney(int months, int P) {
+  public double futureValueOfMoney(int months, double P) {
 
     double i = 0.0425;
 
@@ -50,5 +50,11 @@ public class Calculator {
 
     return Math.floor(FV * 100) / 100;
 
+  }
+
+  public double overDraftFee(int months, double i, double negativeBalance) {
+
+    double t = months / 12.0;
+    return Math.abs(negativeBalance) * Math.pow((1 + i), t) - Math.abs(negativeBalance);
   }
 }
