@@ -24,9 +24,9 @@ public class BankingApplication {
     // 3, -500);
 
     Map<Integer, BankAccount> accountNumbersToOpeningBalances = Map.of(
-        1, new BankAccount("John Doe", 100),
-        2, new BankAccount("Jane Doe", 10_000),
-        3, new BankAccount("Alice Smith", 500)
+        1, new BankAccount("John Doe", 100, 1235, 50),
+        2, new BankAccount("Jane Doe", 10_000, 1111, 500),
+        3, new BankAccount("Alice Smith", 500, 2222, 100)
 
     );
 
@@ -39,7 +39,11 @@ public class BankingApplication {
       int accountNumber = UserInput.getInteger("Please enter your account number: ");
       BankAccount account = accountNumbersToOpeningBalances.get(accountNumber);
       if (account != null) {
-
+        int accountPin = UserInput.getInteger("Enter your PIN");
+        if (account.getPin() != accountPin) {
+          System.out.println("Your pin number is worng. try again with the correct PIN.");
+          continue;
+        }
         boolean isDone = false;
         Integer balance = account.getBalance();
         String customerName = account.getName();
@@ -75,10 +79,10 @@ public class BankingApplication {
             int withdrawAmount;
             while (!isValid) {
               try {
-                if (account.getBalance() <= 0) {
-                  System.out.println("You don't have any deposit to withdraw.");
-                  break;
-                }
+                // if (account.getBalance() <= 0) {
+                // System.out.println("You don't have any deposit to withdraw.");
+                // break;
+                // }
                 withdrawAmount = UserInput.getInteger("How much do you want to withdraw? ");
                 bankAccountService.withdrawMoney(account, withdrawAmount);
                 System.out.println("Your balance is: " + account.getBalance());
