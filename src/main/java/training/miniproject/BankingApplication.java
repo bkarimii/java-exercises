@@ -30,6 +30,8 @@ public class BankingApplication {
 
     );
 
+    BankAccountService bankAccountService = new BankAccountService();
+
     // Do this in an infinite loop so that the application keeps running after a
     // user is finished,
     // and other users can sign in and use the banking application.
@@ -43,14 +45,34 @@ public class BankingApplication {
         System.out.println("Welcome, " + customerName + "!");
         System.out.println("This is your balance: " + balance);
         // ================================================================
+
         System.out.println(
             "Do you want to withdraw or deposite money into your account? ");
-        String depOrWithDraw = UserInput.getString("Enter -D for deposite money , or -W to withdraw money.");
-        if (depOrWithDraw.equalsIgnoreCase("D")) {
-          int depositeAmount = UserInput.getInteger("How much do you want to deposite? ");
-        } else if (depOrWithDraw.equalsIgnoreCase("W")) {
-          int withdrawAmount = UserInput.getInteger("How much do you want to deposite? ");
+        String depOrWithDraw = UserInput
+            .getString("Enter -D for deposite money ,\n -W to withdraw money, \n -F to see future value of your money");
 
+        if (depOrWithDraw.equalsIgnoreCase("D")) {
+
+          int depositeAmount;
+          try {
+            depositeAmount = UserInput.getInteger("How much do you want to deposite? ");
+            bankAccountService.depositeAmount(account, depositeAmount);
+            System.out.println("Your balance is: " + account.getBalance());
+          } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            depositeAmount = UserInput.getInteger("How much do you want to deposite? ");
+          }
+
+        } else if (depOrWithDraw.equalsIgnoreCase("W")) {
+
+          int withdrawAmount = UserInput.getInteger("How much do you want to withdraw? ");
+          bankAccountService.withdrawMoney(account, withdrawAmount);
+          System.out.println("Your balance is: " + account.getBalance());
+
+        } else if (depOrWithDraw.equalsIgnoreCase("F")) {
+          int months = UserInput.getInteger("For how long do you want to calc FV of your balance? ");
+          double fv = bankAccountService.FV(months, account);
+          System.out.println("Future value of your money for " + months + " month will be: " + fv);
         } else {
           System.out.println("You must enter a valid value");
         }
