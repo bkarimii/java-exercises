@@ -22,8 +22,10 @@ public class BankAccountService {
             throw new IllegalArgumentException(withdrawAmount + " is not a valid amount.");
         } else {
             int newBalance = account.getBalance() - withdrawAmount;
-            if (newBalance < 0) {
-                throw new IllegalArgumentException(" Your account balance is not enough.");
+            if (newBalance < -account.getOverDraft()) {
+                int maxWithdraw = account.getOverDraft() + account.getBalance();
+                throw new IllegalArgumentException(
+                        " Your account balance is not enough.\n" + maxWithdraw + " is the max amount youcan withdraw");
             } else {
                 account.setBalance(calculator.calculate(account.getBalance(), withdrawAmount, '-'));
                 System.out.println(withdrawAmount + " withdrew from your account.");
